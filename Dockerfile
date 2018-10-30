@@ -1,7 +1,7 @@
 FROM python:3.6.1
 
 #RUN mkdir /code
-ADD requirements.txt /home/site/wwwroot/
+COPY requirements.txt /home/site/wwwroot/
 RUN pip install -r requirements.txt
 ADD . /home/site/wwwroot/
 
