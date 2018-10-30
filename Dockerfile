@@ -2,6 +2,7 @@ FROM python:3.6.1
 
 #RUN mkdir /code
 RUN mkdir -p /home/site/wwwroot
+COPY requirements.txt /home/site/wwwroot/requirements.txt
 COPY . /home/site/wwwroot
 
 #COPY requirements.txt /home/site/wwwroot/
