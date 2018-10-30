@@ -1,10 +1,16 @@
 FROM python:3.6.1
 
 #RUN mkdir /code
-WORKDIR /home/site/wwwroot
-COPY requirements.txt /home/site/wwwroot/
+COPY . /home/site/wwwroot
+
+#COPY requirements.txt /home/site/wwwroot/
+# Web Site Home
+ENV HOME_SITE "/home/site/wwwroot"
+
+WORKDIR ${HOME_SITE}
+
 RUN pip install -r requirements.txt
-COPY . /home/site/wwwroot/
+#COPY . /home/site/wwwroot/
 
 # ssh
 ENV SSH_PASSWD "root:Docker!"
