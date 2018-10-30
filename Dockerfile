@@ -1,18 +1,11 @@
 FROM python:3.6.1
 
 #RUN mkdir /code
-RUN mkdir -p /home/site/wwwroot
-COPY requirements.txt /home/site/wwwroot/requirements.txt
-COPY . /home/site/wwwroot
-
-#COPY requirements.txt /home/site/wwwroot/
-# Web Site Home
-ENV HOME_SITE "/home/site/wwwroot"
-
-WORKDIR ${HOME_SITE}
-
+ADD requirements.txt /home/site/wwwroot/
 RUN pip install -r requirements.txt
-#COPY . /home/site/wwwroot/
+ADD . /home/site/wwwroot/
+
+WORKDIR /home/site/wwwroot
 
 # ssh
 ENV SSH_PASSWD "root:Docker!"
@@ -24,9 +17,6 @@ RUN apt-get update \
 
 COPY sshd_config /etc/ssh/
 COPY init.sh /usr/local/bin/
-
-#install opencv
-
 	
 RUN chmod u+x /usr/local/bin/init.sh
 EXPOSE 5000 2222
